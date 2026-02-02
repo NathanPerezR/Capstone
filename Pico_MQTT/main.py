@@ -9,7 +9,8 @@ import binascii
 from umqtt.simple import MQTTClient
 
 # Load WiFi login data
-from secrets import secrets
+from config import secrets
+from config import mqtt 
 
 # import socket
 
@@ -306,17 +307,15 @@ led.on()
 # MQTT Parameters
 # Update info below to your MQTT server
 # To do move variables in this section to secrets.py
-MQTT_SERVER = b'yourMQTT_server_address_here'
-MQTT_PORT = 0
-MQTT_USER = "your_user_name_here"
-MQTT_PASSWORD = "Your_password_here"
-# Change to variable to be unique to signify device
-MQTT_CLIENT_ID = b"raspberrypi_pico2w_unique_name"
-MQTT_KEEPALIVE = 7200
-MQTT_SSL = True   # set to False if using local Mosquitto MQTT broker
-MQTT_SSL_PARAMS = {'server_hostname': MQTT_SERVER}
-# For this example code keep the common topic for now since the JSON format below will report temperature reading
-MQTT_TOPIC_PUBLISH = "pico2/temp"
+MQTT_SERVER        = mqtt["server_address"]
+MQTT_PORT          = mqtt["port"]
+MQTT_USER          = mqtt["user"]
+MQTT_PASSWORD      = mqtt["password"]
+MQTT_CLIENT_ID     = mqtt["client_id"] 
+MQTT_KEEPALIVE     = mqtt["keep_alive"]
+MQTT_SSL           = mqtt["ssl"] 
+MQTT_SSL_PARAMS    = {'server_hostname': MQTT_SERVER}
+MQTT_TOPIC_PUBLISH = mqtt["topic_publish"] 
 
 # Initializing message count for JSON payload
 MSG_COUNT = 0
